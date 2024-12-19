@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments</title>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='maicons.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/topbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my_appointments.css') }}">
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+          <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#"><span class="text-primary">FCDS</span>-Health</a>
+            
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarSupport">
+              <ul class="navbar-nav ml-auto">
+                <!-- Common Links -->
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/doctors2">Doctors</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contact</a>
+                </li>
+      
+                {% if 'user_id' in session %}
+                    <!-- Links for Logged-in Users -->
+                    {% if session.get('user_type') == 'user' %}
+                      <!-- Display user name in "My Appointments" link -->
+                      <li class="nav-item">
+                        <a class="nav-link" href="/my_appointments">
+                          {% if session['user_name'] %}
+                            {{ session['user_name'] }}'s Appointments
+                          {% else %}
+                            My Appointments
+                          {% endif %}
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/appointment" class="btn btn-info btn-lg">
+                          <span class="glyphicon glyphicon-calendar"></span> Appointment Now
+                        </a>
+                      </li>
+                    {% endif %}
+                  
+                  {% if session.get('user_type') == 'admin' %}
+                    <!-- Admin-only Link -->
+                    <li class="nav-item">
+                      <a class="nav-link" href="/dashboard">Dashboard</a>
+                  </li>
+                  {% endif %}
+      
+                  <!-- Logout Button -->
+                  <li class="nav-item">
+                    <a href="/logout" class="btn btn-info btn-lg">
+                      <span class="glyphicon glyphicon-log-out"></span> Logout
+                    </a>
+                  </li>
+                {% else %}
+                  <!-- Links for Guests -->
+                  <li class="nav-item">
+                    <a class="btn btn-primary ml-lg-3" href="/login">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-primary ml-lg-3" href="/signup">Register</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      
+      <div class="container">
+        <h2 class="mt-4">My Appointments</h2>
+        {% if appointments %}
+          <table class="table mt-3">
+              <thead>
+                  <tr class="header">
+                      <th>Date</th>
+                      <th>Doctor</th>
+                      <th>Department</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for appointment in appointments %}
+                  <tr>
+                    <td>{{ appointment[0] }}</td>
+                    <td>{{ appointment[1] }} {{ appointment[2] }}</td>
+                    <td>{{ appointment[3] }}</td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        {% else %}
+          <p class="no-appointments mt-4">
+            No appointments found. <a href="/appointment">Book one now!</a>
+          </p>
+        {% endif %}
+    </div>
+</body>
+</html>

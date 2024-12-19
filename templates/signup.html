@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}" >
+<script>
+    let emailValid = false;
+    let govIdValid = false;
+
+    // Function to check email and gov_id using AJAX
+    function checkSignupField() {
+        let email = document.getElementById('email').value;
+        let gov_id = document.getElementById('gov_id').value;
+
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('gov_id', gov_id);
+
+        fetch('/check_signup', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'email_exists') {
+                alert('This email already exists. Please use a different email.');
+                emailValid = false;
+            } else {
+                emailValid = true;
+            }
+
+            if (data.status === 'gov_id_exists') {
+                alert('This Government ID already exists. Please use a different ID.');
+                govIdValid = false;
+            } else {
+                govIdValid = true;
+            }
+
+            // Enable or disable the submit button based on validation
+            toggleSubmitButton();
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Function to enable/disable the submit button
+    function toggleSubmitButton() {
+        const submitButton = document.getElementById('submitButton');
+        if (emailValid && govIdValid) {
+            submitButton.disabled = false; // Enable the button
+        } else {
+            submitButton.disabled = true; // Disable the button
+        }
+    }
+
+    // Ensure the button starts off disabled
+    window.onload = function() {
+        toggleSubmitButton();
+    };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Signup</h2>
+        <form id="signupForm" method="POST" action="/signup" onsubmit="checkSignupField(event)">
+            <input type="text" name="first_name" placeholder="First Name" required pattern="[A-Za-z]+" title="Only letters are allowed">
+            <input type="text" name="last_name" placeholder="Last Name" required pattern="[A-Za-z]+" title="Only letters are allowed">
+            <input type="text" name="gov_id" id="gov_id" placeholder="Government ID (13 Numbers)" oninput="checkSignupField()" required pattern="^\d{13}$" maxlength="13" minlength="13">
+            <input type="text" name="phone_number" placeholder="Phone Number (11 Numbers)" required pattern="^\d{11}$" maxlength="11" minlength="11">
+            <input type="text" name="address" placeholder="Address" required>
+            <input type="email" name="email" id="email" placeholder="Email" oninput="checkSignupField()" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" id="submitButton" value="Signup" disabled>
+        </form>
+        <p>If you have an account, <a href="/login">Login</a></p>  
+    </div>
+</body>
+</html>

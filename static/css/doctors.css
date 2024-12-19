@@ -1,0 +1,133 @@
+/* Improved styling for the form and table */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    text-align: center;
+    color: #1d1c1c;
+}
+
+h3 {
+    color: #0c0c0c;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:hover {
+    background-color: #337d36;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"] {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto;  /* السماح بتمرير الجدول في حالة تجاوز المحتوى العرض */
+    display: block;    /* تمكين التمرير العمودي أو الأفقي */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td {
+    background-color: #fafafa;
+}
+
+.actions form {
+    display: inline;
+}
+
+.actions input[type="submit"] {
+    background-color: #f44336;
+    border-radius: 5px;
+}
+
+.actions input[type="submit"]:hover {
+    background-color: #c02826;
+}
+
+/* تحسين استجابة الصفحة للأحجام المختلفة */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        overflow-x: auto;  /* السماح بالتمرير عند تجاوز المحتوى */
+    }
+
+    table {
+        font-size: 12px;
+        overflow-x: auto; /* السماح بالتمرير الأفقي في الجداول */
+    }
+
+    /* تحديد تباعد أكبر بين الأعمدة لزيادة المسافة بين النصوص */
+    th, td {
+        padding: 8px;
+    }
+
+    button {
+        width: 100%; /* جعل الأزرار تأخذ كامل العرض في الشاشات الصغيرة */
+    }
+}

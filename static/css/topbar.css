@@ -1,0 +1,61 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+}
+a:hover,a:visited, a:link, a:active{
+    text-decoration: none;
+    color: rgb(110, 128, 122);
+}
+a:hover{
+    color: rgb(93, 108, 103);
+}
+a.active{
+    background-color: aquamarine;
+}
+.navbar{
+    background-color: #ffffff;
+    color: rgb(123, 244, 67);
+}
+ul{
+    list-style: none;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    margin:0;
+    flex-wrap: nowrap;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin-right: 70px;
+    flex-wrap: wrap;
+}
+
+.logo{
+    font-weight:1000;
+    font-size: larger;
+    margin-left: 80px;
+}
+
+/* Appointment Now Button */
+.navbar .btn-info {
+    font-weight: bold;
+    background-color:#8cbec2; /* Default Bootstrap info color */
+    border: none;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar .btn-success:hover {
+    background-color: #9ed8d3; /* Slightly darker blue for hover */
+}
+.btn {
+    
+}

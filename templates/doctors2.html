@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Doctors</title>
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/topbar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/professionals.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+  <style>
+    .row{
+      flex-direction: column;
+    align-content: flex-start;
+    }
+  </style>
+  <script>
+      new WOW().init();
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="/">FCDS-Health</a>
+        <div class="collapse navbar-collapse" id="navbarSupport">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+            <li class="nav-item active"><a class="nav-link" href="/doctors2">Doctors</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            {% if 'user_id' in session %}
+              <li class="nav-item"><a class="nav-link" href="/my_appointments">My Appointments</a></li>
+              <li class="nav-item"><a class="btn btn-info" href="/appointment">Appointment Now</a></li>
+            <!-- Logout Button -->
+            <li class="nav-item">
+              <a href="/logout" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-log-out"></span> Logout
+              </a>
+            </li>
+            {% else %}
+              <li class="nav-item"><a class="btn btn-primary" href="/login">Login</a></li>
+              <li class="nav-item"><a class="btn btn-primary" href="/signup">Register</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero-section text-center" style="flex-direction: column;">
+    <h1 class="animate__animated animate__fadeInDown">Meet Our Doctors</h1>
+    <p class="animate__animated animate__fadeInUp">Highly qualified and dedicated professionals.</p>
+    <p class="hero-slogan animate__animated animate__fadeInUp">"Your health, our priority."</p>
+  </div>
+
+  <!-- Departments and Doctors -->
+  <div class="content-section">
+  <div class="container mt-5">
+    {% for department, doctors in doctors_by_department.items() %}
+    <div class="department wow fadeInUp" data-wow-duration="1s">
+      <h2>{{ department }}</h2>
+      <div class="row">
+        {% for doctor in doctors %}
+        <div class="col-md-4">
+          <div class="card doctor-card shadow-sm mb-4 wow zoomIn" data-wow-delay="0.2s">
+            <div class="card-body">
+              <h4 class="card-title"><strong>Dr.</strong> {{ doctor.name }}</h4>
+              <p class="card-text"><strong>Specialist:</strong> {{ doctor.profession }}</p>
+              <p class="card-brief"><strong>Brief:</strong> {{ doctor.brief }}</p>
+              <p><strong>Fee:</strong> ${{ doctor.fee }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+  
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+  </script>
+</body>
+</html>

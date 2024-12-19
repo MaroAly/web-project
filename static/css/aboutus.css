@@ -1,0 +1,48 @@
+.content{
+    position: relative;
+    width:100%;
+    height: 90vh;
+}
+.content img{
+    margin: 0;
+    width: 100%;
+    height: 90vh;
+}
+.topright {
+    font-weight: bolder;
+    font-size: larger;
+    /* position: absolute; */
+    top: 10%;
+    right: 5%;
+  }
+.centerright {  
+    font-weight: bolder;
+    font-size: larger;
+    /* position: absolute; */
+    top: 35%;
+    left: 50%;
+}
+.centerright table{
+    font-weight: bolder;
+    font-size: larger;
+    /* position: absolute; */
+    top: 80%;
+    left: 40%;
+}
+
+  /* Fade-In Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fade-In Effect */
+  .topright {
+    animation: fadeIn 1s ease-in-out;
+  }

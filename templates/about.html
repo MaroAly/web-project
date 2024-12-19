@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/topbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutus.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='maicons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+    <style>
+      /* Responsive adjustments */
+      .content img {
+          width: 100%;
+          height: auto;
+      }
+
+      .topright, .centerright {
+          padding: 15px;
+          margin: 0 auto;
+      }
+
+      .topright {
+          text-align: center;
+          background-color: #f9f9f9;
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+          margin-top: 20px;
+      }
+
+      .centerright {
+          text-align: center;
+          margin-top: 20px;
+      }
+
+      table {
+          width: 100%;
+          max-width: 600px;
+          margin: 20px auto;
+      }
+
+      @media (max-width: 768px) {
+          .navbar-nav {
+              flex-direction: column;
+              align-items: center;
+          }
+
+          .btn {
+              width: 100%;
+              margin-bottom: 10px;
+          }
+
+          .topright pre {
+              font-size: 14px;
+          }
+      }
+
+      @media (max-width: 576px) {
+          table {
+              font-size: 12px;
+          }
+
+          .topright, .centerright {
+              padding: 10px;
+          }
+      }
+  </style>
+  </head>
+<body style="color: #47759d;">
+  
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="#"><span class="text-primary">FCDS</span>-Health</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupport">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/doctors2">Doctors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a>
+            </li>
+            
+            {% if 'user_id' in session %}
+              <!-- Links for Logged-in Users -->
+              {% if session.get('user_type') == 'user' %}
+                <!-- Display user name in "My Appointments" link -->
+                <li class="nav-item">
+                  <a class="nav-link" href="/my_appointments">
+                    {% if session['user_name'] %}
+                      {{ session['user_name'] }}'s Appointments
+                    {% else %}
+                      My Appointments
+                    {% endif %}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/appointment" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-calendar"></span> Appointment Now
+                  </a>
+                </li>
+              {% endif %}
+            
+              {% if session.get('user_type') == 'admin' %}
+                <!-- Admin-only Link -->
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard">Dashboard</a>
+              </li>
+              {% endif %}
+
+              <!-- Logout Button -->
+              <li class="nav-item">
+                <a href="/logout" class="btn btn-info btn-lg">
+                  <span class="glyphicon glyphicon-log-out"></span> Logout
+                </a>
+              </li>
+            {% else %}
+              <!-- Links for Guests -->
+              <li class="nav-item">
+                <a class="btn btn-primary ml-lg-3" href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-primary ml-lg-3" href="/signup">Register</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div> <!-- .navbar-collapse -->
+      </div> <!-- .container -->
+    </nav>
+  </header>
+
+  <div class="content">
+    <img src="{{ url_for('static', filename='health-still-life-with-copy-space.jpg') }}" alt="image of medical equipment">
+    <div class="topright">
+      <p style="color: #47759d;">
+        Welcome to HospitalFCDS, where your health and well-being are our top priorities.
+        Located in the heart of Alexandria, we are dedicated to providing exceptional medical care 
+        with a compassionate touch.
+        Our team of highly skilled professionals is committed to delivering personalized treatment plans tailored
+        to meet your unique needs.💙💙💙
+      </p>
+    </div>
+    <div style="margin-bottom: 10px"></div>
+    <div class="centerright">
+      <h1>This site was made by:</h1>
+      <style type="text/css">
+        .tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+        .tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#5376b0;
+          font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#5376b0;;
+          font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg .tg-l3uw{font-family:Verdana, Geneva, sans-serif !important;text-align:center;vertical-align:top}
+        .tg .tg-a05t{font-family:Verdana, Geneva, sans-serif !important;font-weight:bold;text-align:left;text-decoration:underline;
+          vertical-align:top}
+      </style>
+      <table class="tg"><thead>
+        <tr>
+          <th class="tg-l3uw">Name</th>
+          <th class="tg-l3uw">ID</th>
+        </tr></thead>
+      <tbody>
+        <tr>
+          <td class="tg-a05t">Marwan Ali</td>
+          <td class="tg-a05t">20221460240</td>
+        </tr>
+        <tr>
+          <td class="tg-a05t">Ziad Ashraf</td>
+          <td class="tg-a05t">20221369225</td>
+        </tr>
+        <tr>
+          <td class="tg-a05t">Fares Mohammed</td>
+          <td class="tg-a05t">20221461330</td>
+        </tr>
+        <tr>
+          <td class="tg-a05t">Ghada Elsayed</td>
+          <td class="tg-a05t">22010371</td>
+        </tr>
+        <tr>
+          <td class="tg-a05t">Israa Mostafa</td>
+          <td class="tg-a05t">22010321</td>
+        </tr>
+        <tr>
+          <td class="tg-a05t">Raneem Mostafa</td>
+          <td class="tg-a05t">22011576</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

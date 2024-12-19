@@ -1,0 +1,141 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #e9f7f6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero Section Styling */
+.hero-section {
+    background: linear-gradient(to bottom, #add6d8, rgba(0, 128, 128, 0.6));
+    padding: 100px 20px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    position: relative;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    animation: fadeInDown 1.2s ease-out;
+}
+
+/* Content Section */
+.content-section {
+    background: url('doctors.jpg') center/cover no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    padding: 60px 20px;
+    color: #333;
+}
+
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: -1;
+}
+
+/* Department Styling */
+.department {
+    margin-bottom: 50px;
+    animation: fadeIn 1s ease-out;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.department h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #036e68;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Doctor Cards Styling */
+.card {
+    border-radius: 50px; /* Elliptical Shape */
+    background: white;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-in-out; /* Animation for entry */
+    opacity: 0; /* Initially hidden */
+    animation-fill-mode: forwards; /* Stay visible after animation */
+    
+}
+
+.card:nth-child(odd) {
+    animation-delay: 0.2s; /* Slight stagger for odd cards */
+}
+
+.card:nth-child(even) {
+    animation-delay: 0.4s; /* Slight stagger for even cards */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.3);
+
+}
+
+.card .card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.card h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #008080;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+/* Animation Keyframes */
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Pulse Animation */
+@keyframes hoverPulse {
+    from {
+        transform: translateY(-10px) scale(1);
+    }
+    to {
+        transform: translateY(-15px) scale(1.05);
+    }
+}
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
